@@ -16,6 +16,10 @@ body {
     font-weight: 400;
 }
 
+a {
+    all: unset;
+} 
+
 .main {
     background-color: #004980;
     height: 100vh;
