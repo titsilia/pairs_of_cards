@@ -9,15 +9,26 @@
 </head>
 <body>
     <section class="main">
-        <div class="complexity">
+        <form method="GET" action="script.js" class="complexity">
             <p class="complexity__text">Выбери сложность</p>
             <div class="complexity__numbers">
-                <a class="lowlvl complexity__numbers_number">1</a>
-                <a class="middlelvl complexity__numbers_number">2</a>
-                <a class="highlvl complexity__numbers_number">3</a>
+                <div class="lowlvl complexity__numbers_number">
+                    <label for="1" name="complexity_label"></label>
+                    <input type="radio" id="1" name="complexity_type" value="lowlvl" class="lowlvl">1</input>
+                </div>
+
+                <div class="middlelvl complexity__numbers_number">
+                    <label for="2" name="complexity_label"></label>
+                    <input type="radio" id="1" name="complexity_type" value="lowlvl" class="middlelvl">2</input>
+                </div>
+
+                <div class="highlvl complexity__numbers_number">
+                    <label for="3" name="complexity_label"></label>
+                    <input type="radio" id="1" name="complexity_type" value="lowlvl" class="highlvl">3</input>
+                </div>
             </div>
             <button class="complexity__button">Старт</button>
-        </div>
+        </form>
     </section>
 
     <script src="script.js"></script>
