@@ -73,6 +73,21 @@ a {
     transform: scale(1.3);
 }
 
+/* тест для применения бордера */
+/* 1, примерно как в том, что вы скинули*/
+.checked:checked + check {
+    border: 2px solid #7AC100;
+}
+
+/* 2 */
+.complexity__numbers_number:checked {
+    border: 2px solid #7AC100;
+}
+
+/* 3 */
+.complexity__numbers_number:checked  + .highlvl{
+    border: 2px solid #7AC100;
+}
 
 .complexity__button {
     margin-top: 67px;

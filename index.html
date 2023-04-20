@@ -5,27 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Урок 1</title>
+    <title>Урок 2</title>
 </head>
 <body>
     <section class="main">
-        <form method="GET" action="script.js" class="complexity">
+        <form class="complexity">
             <p class="complexity__text">Выбери сложность</p>
             <div class="complexity__numbers">
-                <div class="lowlvl complexity__numbers_number">
-                    <label for="1" name="complexity_label"></label>
-                    <input type="radio" id="1" name="complexity_type" value="lowlvl" class="lowlvl">1</input>
-                </div>
+                <label name="complexity_label" class="complexity__numbers_number">
+                    <input type="radio" id="1" name="complexity_type" value="lowlvl" class="complexity__inputs">1</input>
+                </label>
 
-                <div class="middlelvl complexity__numbers_number">
-                    <label for="2" name="complexity_label"></label>
-                    <input type="radio" id="1" name="complexity_type" value="lowlvl" class="middlelvl">2</input>
-                </div>
+                <label name="complexity_label" class="checked complexity__numbers_number">
+                    <input type="radio" id="2" name="complexity_type" value="middlelvl" class="checked complexity__inputs"></input>
+                    <div name="chek">2</div>
+                </label>
 
-                <div class="highlvl complexity__numbers_number">
+                <label name="complexity_label" class="complexity__numbers_number">
+                    <input type="radio" id="3" name="complexity_type" value="highlvl" class="complexity__inputs"></input>
+                    <div class="highlvl">3</div>
+                </label>
+
+                <!-- <div class="middlelvl complexity__numbers_number">
+                    <label for="2" name="complexity_label" ></label>
+                    <input type="radio" id="2" name="complexity_type" value="2" class="middlelvl complexity__inputs">2</input>
+                </div> -->
+
+                <!-- <div class="highlvl complexity__numbers_number">
                     <label for="3" name="complexity_label"></label>
-                    <input type="radio" id="1" name="complexity_type" value="lowlvl" class="highlvl">3</input>
-                </div>
+                    <input type="radio" id="3" name="complexity_type" value="3" class="highlvl complexity__inputs">3</input>
+                </div> -->
             </div>
             <button class="complexity__button">Старт</button>
         </form>
