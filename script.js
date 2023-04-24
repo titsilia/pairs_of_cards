@@ -10,14 +10,12 @@ console.log(inputs);
         console.log(target);
 
         const complexityInput = document.querySelector('.complexity__inputs:checked');
-        // complexityInput.classList.add('checked');
         console.log(complexityInput);
 
         const complexityType = complexityInput.value;
         console.log(complexityType);
 
 
-        // window.location.href = `${complexityType}.html`
         localStorage.setItem('complexity', complexityType);
         console.log(localStorage);
     });
