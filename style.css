@@ -1,6 +1,7 @@
 @font-face {
-    font-family: 'StratosSkyeng';
-    src: url('./fonts/stratosskyengweb-regular.woff') format('woff'), url('./fonts/stratosskyengweb-regular.woff2') format('woff2');
+    font-family: StratosSkyeng;
+    src: url("./fonts/stratosskyengweb-regular.woff") format("woff"),
+        url("./fonts/stratosskyengweb-regular.woff2") format("woff2");
 }
 
 input {
@@ -14,17 +15,17 @@ input {
 }
 
 body {
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
+    background-color: #004980;
 }
 
 a {
     all: unset;
-} 
+}
 
-.main {
-    background-color: #004980;
+.main__firstcreen {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -39,7 +40,7 @@ a {
     justify-content: center;
     width: 480px;
     height: 459px;
-    background: #C2F5FF;
+    background: #c2f5ff;
     border-radius: 12px;
 }
 
@@ -57,35 +58,83 @@ a {
     gap: 24px;
 }
 
-.complexity__numbers_number, .complexity__value {
+.complexity__numbers_number,
+.complexity__value {
     width: 98px;
     height: 98px;
-    background: #FFFFFF;
+    background: #fff;
     border-radius: 12px;
     font-size: 64px;
     line-height: 72px;
-    color: #0080C1;
+    color: #0080c1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .complexity__numbers_number:hover {
     transform: scale(1.3);
 }
+
 .complexity__inputs:checked + .complexity__value {
-    border: 2px solid #7AC100;
+    border: 2px solid #7ac100;
 }
 
-
-
-.complexity__button {
-    margin-top: 67px;
+.buttons {
     border: none;
-    width: 246px;
-    height: 50px;
-    background: #7AC100;
+    background: #7ac100;
     border-radius: 12px;
     font-size: 24px;
     line-height: 32px;
-    color: #FFFFFF;
+    color: #fff;
+}
+
+.complexity__button {
+    margin-top: 67px;
+    width: 246px;
+    height: 50px;
+}
+
+/* второй и третий экран */
+
+.center {
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
+}
+
+.top {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.top__texts {
+    display: flex;
+    gap: 57px;
+    padding-left: 39px;
+}
+
+.top__texts_text {
+    font-size: 16px;
+    line-height: 32px;
+    color: #fff;
+}
+
+.top__time {
+    font-size: 64px;
+    line-height: 72px;
+    color: #fff;
+}
+
+.top__button {
+    width: 246px;
+    height: 50px;
+}
+
+.cards {
+    margin-top: 35px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
