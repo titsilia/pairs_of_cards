@@ -13,7 +13,10 @@
         "prettier/prettier": "error",
         "camelcase": ["error"],
         "eqeqeq": ["error", "always"],
-        "no-undef": "warn",
+        "no-undef": "off",
         "no-unused-vars": "off"
+    },
+    "error": {
+        "endOfLine": "auto"
     }
 }
