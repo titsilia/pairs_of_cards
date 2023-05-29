@@ -7,6 +7,14 @@ const form = document.querySelector(".complexity")!;
 
 const button = document.querySelector(".complexity__button")!;
 
+window.application = {
+    cardsRenders: [],
+    firstCard: undefined,
+    secondCart: undefined,
+    resultImg: undefined,
+    textResult: undefined,
+};
+
 // запись выбранного значения в local
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -173,10 +181,6 @@ function renderScreen() {
     }
     setTimeout(reverseCards, 3000);
     console.log(imgCards);
-
-    window.application = {
-        cardsRenders: [],
-    };
 
     // функция для получения массива карт
     function gerArrayCards() {
