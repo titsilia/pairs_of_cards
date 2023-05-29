@@ -7,6 +7,7 @@ const form = document.querySelector(".complexity")!;
 
 const button = document.querySelector(".complexity__button")!;
 
+// создаём application
 window.application = {
     cardsRenders: [],
     firstCard: undefined,
