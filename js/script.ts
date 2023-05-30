@@ -1,4 +1,4 @@
-import { templateEngine } from "./template";
+import { templateEngine } from "./templateEngine";
 import "../css/style.css";
 
 // работа с первым экраном
@@ -10,10 +10,10 @@ const form = document.querySelector(".complexity") as HTMLElement;
 // создаём application
 window.application = {
     cardsRenders: [],
-    firstCard: undefined,
-    secondCart: undefined,
-    resultImg: undefined,
-    textResult: undefined,
+    firstCard: "",
+    secondCart: "",
+    resultImg: "",
+    textResult: "",
 };
 
 // запись выбранного значения в local
@@ -192,6 +192,7 @@ function renderScreen() {
             1,
             level[localStorage.getItem("complexity")!] / 2 + 1
         );
+        console.log(cardsRender);
 
         // перемешиваем массив с нужным колвом карт
         shuffleCards(cardsRender);
@@ -280,8 +281,8 @@ function renderScreen() {
                 renderResultScreen();
             }
 
-            window.application.firstCard = null;
-            window.application.secondCart = null;
+            window.application.firstCard = "";
+            window.application.secondCart = "";
         }
     }
 
