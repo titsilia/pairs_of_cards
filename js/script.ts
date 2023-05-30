@@ -2,10 +2,10 @@ import { templateEngine } from "./template";
 import "../css/style.css";
 
 // работа с первым экраном
-const main = document.querySelector(".main__firstcreen")!;
-const form = document.querySelector(".complexity")!;
+const main = document.querySelector(".main__firstcreen") as HTMLElement;
+const form = document.querySelector(".complexity") as HTMLElement;
 
-const button = document.querySelector(".complexity__button")!;
+// const button = document.querySelector(".complexity__button") as HTMLElement;
 
 // создаём application
 window.application = {
@@ -96,10 +96,10 @@ function renderScreen() {
     const tempCards = templateEngine(templateCards());
     document.body.appendChild(tempCards);
 
-    const mainPlay = document.querySelector(".main")!;
+    const mainPlay = document.querySelector(".main") as HTMLElement;
 
     const cards = document.querySelector(".cards") as HTMLElement;
-    const buttonReplay = document.querySelector(".top__button")!;
+    const buttonReplay = document.querySelector(".top__button") as HTMLElement;
 
     // создаём массив с картинками карт
     const CARDS = [
@@ -156,7 +156,7 @@ function renderScreen() {
     };
 
     // функционал кнопки Начать заново
-    buttonReplay.addEventListener("click", (event) => {
+    buttonReplay.addEventListener("click", () => {
         while (cards.firstChild) {
             cards.removeChild(cards.firstChild);
         }
@@ -220,7 +220,7 @@ function renderScreen() {
 
     // функция переворачивания карт
     function reverseCards() {
-        const cardsImg = document.querySelectorAll(".cards__img")!;
+        const cardsImg = document.querySelectorAll(".cards__img");
         cardsImg.forEach((img) => {
             img.setAttribute("src", "/static/img/rubashka.svg");
         });
@@ -329,8 +329,10 @@ function renderScreen() {
         mainPlay.classList.add("opacity");
         buttonReplay.setAttribute("disabled", "disabled");
 
-        const reloadButton = document.querySelector(".btn_reload")!;
-        reloadButton.addEventListener("click", (event) => {
+        const reloadButton = document.querySelector(
+            ".btn_reload"
+        ) as HTMLElement;
+        reloadButton.addEventListener("click", () => {
             location.reload();
         });
     }
