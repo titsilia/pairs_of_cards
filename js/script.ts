@@ -1,11 +1,20 @@
-import { templateEngine } from "/js/template.js";
+import { templateEngine } from "./templateEngine";
 import "../css/style.css";
 
 // работа с первым экраном
-const main = document.querySelector(".main__firstcreen");
-const form = document.querySelector(".complexity");
+const main = document.querySelector(".main__firstcreen") as HTMLElement;
+const form = document.querySelector(".complexity") as HTMLElement;
 
-const button = document.querySelector(".complexity__button");
+// const button = document.querySelector(".complexity__button") as HTMLElement;
+
+// создаём application
+window.application = {
+    cardsRenders: [],
+    firstCard: "",
+    secondCart: "",
+    resultImg: "",
+    textResult: "",
+};
 
 // запись выбранного значения в local
 form.addEventListener("submit", (event) => {
@@ -14,7 +23,7 @@ form.addEventListener("submit", (event) => {
     // присваеваем переменной выбранные значения
     const complexityInput = document.querySelector(
         ".complexity__inputs:checked"
-    );
+    ) as HTMLInputElement;
 
     // что делать, если пользователь выбрал сложность
     if (complexityInput) {
@@ -87,10 +96,10 @@ function renderScreen() {
     const tempCards = templateEngine(templateCards());
     document.body.appendChild(tempCards);
 
-    const mainPlay = document.querySelector(".main");
+    const mainPlay = document.querySelector(".main") as HTMLElement;
 
-    const cards = document.querySelector(".cards");
-    const buttonReplay = document.querySelector(".top__button");
+    const cards = document.querySelector(".cards") as HTMLElement;
+    const buttonReplay = document.querySelector(".top__button") as HTMLElement;
 
     // создаём массив с картинками карт
     const CARDS = [
@@ -132,15 +141,22 @@ function renderScreen() {
         "/static/img/Qs.svg",
     ];
 
+    type LevelType = {
+        [key: string]: number;
+        lowlvl: number;
+        middlelvl: number;
+        highlvl: number;
+    };
+
     // записываем количество карт, которые нужно отрисовать при опр. уровне
-    const level = {
+    const level: LevelType = {
         lowlvl: 6,
         middlelvl: 12,
         highlvl: 18,
     };
 
     // функционал кнопки Начать заново
-    buttonReplay.addEventListener("click", (event) => {
+    buttonReplay.addEventListener("click", () => {
         while (cards.firstChild) {
             cards.removeChild(cards.firstChild);
         }
@@ -152,10 +168,10 @@ function renderScreen() {
     });
 
     // массив для готовых карт
-    let imgCards = [];
+    const imgCards: Array<HTMLImageElement> = [];
 
     // массив выбранных карт
-    let resultCards = [];
+    const resultCards = [];
 
     // вызов функции получения массива карт
     gerArrayCards();
@@ -172,22 +188,23 @@ function renderScreen() {
         shuffleCards(CARDS);
 
         // берём нужное количество карт
-        let cardsRender = CARDS.slice(
+        const cardsRender = CARDS.slice(
             1,
-            level[localStorage.getItem("complexity")] / 2 + 1
+            level[localStorage.getItem("complexity")!] / 2 + 1
         );
+        console.log(cardsRender);
 
         // перемешиваем массив с нужным колвом карт
         shuffleCards(cardsRender);
 
-        window.cardsRenders = cardsRender;
+        window.application.cardsRenders = cardsRender;
     }
 
     // функция отрисовки карт
     function renderCards() {
-        shuffleCards(window.cardsRenders);
+        shuffleCards(window.application.cardsRenders);
 
-        window.cardsRenders.forEach((card) => {
+        window.application.cardsRenders.forEach((card: string) => {
             // создаём элемент img и добавляем классы
             const cardsImg = document.createElement("img");
             cardsImg.classList.add("cards__img");
@@ -211,29 +228,29 @@ function renderScreen() {
     }
 
     // функция перемешивания массива
-    function shuffleCards(array) {
+    function shuffleCards(array: Array<string>) {
         array.sort(() => Math.random() - 0.5);
     }
 
     // логика переворачивания и сравнения карт
 
     // вызов функции по клику
-    cards.addEventListener("click", (event) => {
-        const target = event.target;
+    cards.addEventListener("click", (event: MouseEvent) => {
+        const target = event.target as HTMLElement;
 
         handleClickCards(target);
     });
 
     // функция записи значения карт в массив
-    function handleClickCards(target) {
+    function handleClickCards(target: HTMLElement) {
         target.setAttribute("src", `${target.id}`);
 
-        if (!window.firstCard) {
-            window.firstCard = target.id;
-            console.log(window.firstCard);
+        if (!window.application.firstCard) {
+            window.application.firstCard = target.id;
+            console.log(window.application.firstCard);
         } else {
-            window.secondCart = target.id;
-            console.log(window.secondCart);
+            window.application.secondCart = target.id;
+            console.log(window.application.secondCart);
         }
 
         gameResult();
@@ -242,28 +259,30 @@ function renderScreen() {
     // функция вывода результата
     function gameResult() {
         console.log("запуск функции");
-        if (window.firstCard && window.secondCart) {
+        if (window.application.firstCard && window.application.secondCart) {
             console.log("запуск сравнения");
-            if (window.firstCard === window.secondCart) {
+            if (
+                window.application.firstCard === window.application.secondCart
+            ) {
                 console.log("они равны");
-                resultCards.push(firstCard);
-                resultCards.push(secondCart);
+                resultCards.push(window.application.firstCard);
+                resultCards.push(window.application.secondCart);
 
                 if (resultCards.length === imgCards.length) {
                     console.log("экран выигрыша");
-                    window.resultImg = "/static/img/win.svg";
-                    window.textResult = "Вы выиграли!";
+                    window.application.resultImg = "/static/img/win.svg";
+                    window.application.textResult = "Вы выиграли!";
                     renderResultScreen();
                 }
             } else {
                 console.log("экран проигрыша!");
-                window.resultImg = "/static/img/lose.svg";
-                window.textResult = "Вы проиграли!";
+                window.application.resultImg = "/static/img/lose.svg";
+                window.application.textResult = "Вы проиграли!";
                 renderResultScreen();
             }
 
-            window.firstCard = null;
-            window.secondCart = null;
+            window.application.firstCard = "";
+            window.application.secondCart = "";
         }
     }
 
@@ -278,13 +297,13 @@ function renderScreen() {
                         tag: "img",
                         cls: "result__img",
                         attrs: {
-                            src: window.resultImg,
+                            src: window.application.resultImg,
                         },
                     },
                     {
                         tag: "p",
                         cls: "result__title",
-                        content: window.textResult,
+                        content: window.application.textResult,
                     },
                     {
                         tag: "p",
@@ -311,8 +330,10 @@ function renderScreen() {
         mainPlay.classList.add("opacity");
         buttonReplay.setAttribute("disabled", "disabled");
 
-        const reloadButton = document.querySelector(".btn_reload");
-        reloadButton.addEventListener("click", (event) => {
+        const reloadButton = document.querySelector(
+            ".btn_reload"
+        ) as HTMLElement;
+        reloadButton.addEventListener("click", () => {
             location.reload();
         });
     }
