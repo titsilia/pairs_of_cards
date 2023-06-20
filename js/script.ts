@@ -1,4 +1,5 @@
 import { templateEngine } from "./templateEngine";
+import { shuffleCards } from "./shuffleCards";
 import "../css/style.css";
 
 // работа с первым экраном
@@ -225,11 +226,6 @@ function renderScreen() {
         cardsImg.forEach((img) => {
             img.setAttribute("src", "/static/img/rubashka.svg");
         });
-    }
-
-    // функция перемешивания массива
-    function shuffleCards(array: Array<string>) {
-        array.sort(() => Math.random() - 0.5);
     }
 
     // логика переворачивания и сравнения карт
