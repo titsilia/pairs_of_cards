@@ -220,12 +220,37 @@ function renderScreen() {
         });
     }
 
+    // переменная, которая будет хранить значение таймера
+    let timerInterval: NodeJS.Timeout;
+    let seconds = 0;
+
+    // функция запуска таймера
+    function start() {
+        const timerEl = document.querySelector(".top__time") as HTMLElement;
+        clearTimer();
+        console.log(timerInterval);
+        timerInterval = setInterval(function () {
+            seconds++;
+            timerEl.innerHTML = `${seconds >= 600 ? "" : "0"}${
+                (seconds / 60) >> 0
+            }.${seconds % 60 < 10 ? `0${+seconds % 60}` : +seconds % 60}`;
+
+            console.log(seconds);
+        }, 1000);
+    }
+
+    //функция очистки таймера
+    function clearTimer() {
+        clearInterval(timerInterval);
+    }
+
     // функция переворачивания карт
     function reverseCards() {
         const cardsImg = document.querySelectorAll(".cards__img");
         cardsImg.forEach((img) => {
             img.setAttribute("src", "/static/img/rubashka.svg");
         });
+        start();
     }
 
     // логика переворачивания и сравнения карт
@@ -309,7 +334,7 @@ function renderScreen() {
                     {
                         tag: "p",
                         cls: "result__time",
-                        content: "1.20",
+                        content: "00.00",
                     },
                     {
                         tag: "button",
@@ -325,6 +350,18 @@ function renderScreen() {
 
         mainPlay.classList.add("opacity");
         buttonReplay.setAttribute("disabled", "disabled");
+
+        function over() {
+            const timerEnd = document.querySelector(
+                ".result__time"
+            ) as HTMLElement;
+            clearTimer();
+            timerEnd.innerHTML = `${seconds >= 600 ? "" : "0"}${
+                (seconds / 60) >> 0
+            }.${seconds % 60 < 10 ? `0${+seconds % 60}` : +seconds % 60}`;
+        }
+
+        over();
 
         const reloadButton = document.querySelector(
             ".btn_reload"
